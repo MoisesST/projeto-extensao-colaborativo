@@ -1,33 +1,33 @@
-const mario = document.querySelector('.mario')
-const pipe = document.querySelector('.pipe')
+const personagem = document.querySelector('.personagem')
+const obstaculo = document.querySelector('.obstaculo')
 
-const jump = () => {
-  mario.classList.add('jump')
+const pulo = () => {
+  personagem.classList.add('pulo')
 
   setTimeout(() => {
-    mario.classList.remove('jump')
+    personagem.classList.remove('pulo')
   }, 500)
 }
 
 const loop = setInterval(() => {
 
-  const pipePosition = pipe.offsetLeft
-  const marioPosition = +window.getComputedStyle(mario).bottom.replace('px', '')
+  const posicaoDoObstaculo = obstaculo.offsetLeft
+  const posicaoDoPersonagem = +window.getComputedStyle(personagem).bottom.replace('px', '')
 
-  if (pipePosition <= 120 && pipePosition > 0 && marioPosition < 80) {
+  if (posicaoDoObstaculo <= 90 && posicaoDoObstaculo > 0 && posicaoDoPersonagem < 145) {
 
-    pipe.style.animation = 'none'
-    pipe.style.left = `${pipePosition}px`
+    obstaculo.style.animation = 'none'
+    obstaculo.style.left = `${posicaoDoObstaculo}px`
+    obstaculo.src = '/images/goku/troca-obstaculo.png '
 
-    mario.style.animation = 'none'
-    mario.style.bottom = `${marioPosition}px`
-
-    mario.src = '/images/game-over.png '
-    mario.style.width = '75px'
-    mario.style.marginLeft = '50px'
+    personagem.style.animation = 'none'
+    personagem.style.bottom = `${posicaoDoPersonagem}px`
+    personagem.src = '/images/goku/fim-de-jogo.png '
+    personagem.style.width = '75px'
+    personagem.style.marginLeft = '50px'
 
     clearInterval(loop)
   }
 }, 10)
 
-document.addEventListener('keydown', jump)
+document.addEventListener('keydown', pulo)
